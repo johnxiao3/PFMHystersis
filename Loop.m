@@ -22,9 +22,10 @@ function varargout = Loop(varargin)
 
 % Edit the above text to modify the response to help Loop
 
-% Last Modified by GUIDE v2.5 13-Jul-2017 14:02:03
+% Last Modified by GUIDE v2.5 13-Jul-2017 14:15:57
 
 % Begin initialization code - DO NOT EDIT
+
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
@@ -57,6 +58,14 @@ handles.output = hObject;
 
 % Update handles structure
 guidata(hObject, handles);
+
+%Where to add programs
+
+while 1
+    D = importdata('Data.txt')
+    
+end
+
 
 % UIWAIT makes Loop wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
