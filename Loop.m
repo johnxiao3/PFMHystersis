@@ -22,7 +22,7 @@ function varargout = Loop(varargin)
 
 % Edit the above text to modify the response to help Loop
 
-% Last Modified by GUIDE v2.5 13-Jul-2017 14:15:57
+% Last Modified by GUIDE v2.5 13-Jul-2017 15:00:16
 
 % Begin initialization code - DO NOT EDIT
 
@@ -57,14 +57,11 @@ function Loop_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 
 % Update handles structure
+StopFlag=0;
+handles.StopFlag=StopFlag;
 guidata(hObject, handles);
-
 %Where to add programs
 
-while 1
-    D = importdata('Data.txt')
-    
-end
 
 
 % UIWAIT makes Loop wait for user response (see UIRESUME)
@@ -79,4 +76,39 @@ function varargout = Loop_OutputFcn(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Get default command line output from handles structure
+handles.StopFlag=1;
+guidata(hObject, handles);
 varargout{1} = handles.output;
+
+
+% --- Executes during object creation, after setting all properties.
+function V_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to V (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+
+
+% --- If Enable == 'on', executes on mouse press in 5 pixel border.
+% --- Otherwise, executes on mouse press in 5 pixel border or over V.
+function V_ButtonDownFcn(hObject, eventdata, handles)
+% hObject    handle to V (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+
+% --- Executes on mouse press over figure background.
+function figure1_ButtonDownFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+while 1
+%      figure(f) 
+    D = importdata('Data.txt'); 
+    pause(0.3);
+    set(handles.V, 'String', num2str(D(1)));
+    set(handles.A, 'String', num2str(D(2)));
+    set(handles.P, 'String', num2str(D(3)));
+end
